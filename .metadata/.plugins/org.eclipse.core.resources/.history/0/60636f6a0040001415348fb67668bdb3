@@ -1,0 +1,103 @@
+package com.edu.knapasack.greedy;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+import com.edu.knapsack.Item;
+import com.edu.knapsack.queue.PQueue;
+
+/***
+ * The Class provide the Greedy Strategy to implementation of 0-1 knapsack Algorithm
+ * @author 
+ *
+ */
+public class GreedyKnapsack {
+
+	
+	private static  Scanner scanner;
+	private FileInputStream fin;
+	private static List<Item> listofItems;
+	
+	/**
+	 * Constructor will take filePath as input argument 
+	 * @param filePath : Input file Name
+	 */
+	public GreedyKnapsack(String filePath){
+		try {
+			fin = new FileInputStream(new File(filePath));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        scanner = new Scanner(fin);
+	}	
+	/**
+	 * This Method provide the core logic for the implementation of 0-1 Knapsack Algorithm
+	 * @param listofItems : List of item with there weight and value
+	 * @param knapsackSize  : Size of the Knapsack
+	 * @return : List<Items> which are included into the Knapsack
+	 */
+	public List<Item> greedyKnapsackAlgorithm(List<Item> listofItems,int knapsackSize){
+		/**calculate the value per unit of weight for each item i.e value/weight*/
+		calculateValueperUnit(listofItems);
+		Collections.sort(listofItems, new PQueue());
+		List<Item> outputItemList = new ArrayList<>();
+		int currentKnapsackSize = 0;
+		for(Item item : listofItems)
+		{
+			if(currentKnapsackSize < knapsackSize){
+				int itemWeight = item.getWeight();
+				if(itemWeight <= knapsackSize && itemWeight <= (knapsackSize-currentKnapsackSize)){
+					outputItemList.add(item);
+					currentKnapsackSize = currentKnapsackSize + itemWeight;
+				}
+			}
+		}
+		return outputItemList;
+		
+	}
+	/***
+	 * Provide input file as command line argument with absolute path of the file (i.e full path)
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		/
+		String filePath = args[0];
+		GreedyKnapsack greedyKnapsack = new GreedyKnapsack(filePath);
+		int totalValue = 0;
+		int totalWeight = 0;
+		int totalItem = scanner.nextInt();
+		int knapsackSize = scanner.nextInt();
+		listofItems = new ArrayList<Item>(totalItem);
+		for(int i = 0; i < totalItem;i++){
+			Item item = new Item(scanner.nextInt(),scanner.nextInt());
+			listofItems.add(item);
+		}
+		List<Item> outputList = greedyKnapsack.greedyKnapsackAlgorithm(listofItems, knapsackSize);
+		System.out.println("******Solution******");
+		System.out.println("Solution Contains Elements");
+		for(Item item : outputList){
+			System.out.println(item);
+			totalValue = totalValue + item.getValue();
+			totalWeight  = totalWeight + item.getWeight();
+		}
+		System.out.println("Total Value  : "+totalValue);
+		System.out.println("Total Weight : "+totalWeight);
+	}
+	/**
+	 * This Method will calculate the value per unit of weight for each item i.e value/weight
+	 * @param listofItems : Take input as all the Items in problem
+	 */
+	public void calculateValueperUnit(List<Item> listofItems){
+		
+		for(Item item : listofItems){
+			int valueperUnit = (item.getValue()/item.getWeight());
+			item.setValueperUnit(valueperUnit);
+		}
+	}
+
+}

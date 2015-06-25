@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.edu.knapsack.bb.GreedyKnapsack&apos; to &apos;BBKnapsack&apos;&#x0D;&#x0A;- Original project: &apos;BranchBoundKnapsack&apos;&#x0D;&#x0A;- Original element: &apos;com.edu.knapsack.bb.GreedyKnapsack&apos;&#x0D;&#x0A;- Renamed element: &apos;com.edu.knapsack.bb.BBKnapsack&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;GreedyKnapsack&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.edu.knapsack.bb{GreedyKnapsack.java[GreedyKnapsack" matchStrategy="1" name="BBKnapsack" qualified="false" references="true" similarDeclarations="false" stamp="1411365880100" textual="false" version="1.0"/>
+</session>

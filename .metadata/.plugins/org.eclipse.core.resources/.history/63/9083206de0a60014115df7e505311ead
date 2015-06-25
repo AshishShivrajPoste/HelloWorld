@@ -1,0 +1,17 @@
+package com.ms.edu.linklist;
+
+public class Linklist {
+
+	private Node head;
+	private Node current;
+	public void add(Node node){
+		if(head==null){
+			head = node;
+			current = node;
+		}
+		else{
+			current.setLink(node);
+			current = node;
+		}
+	}
+}

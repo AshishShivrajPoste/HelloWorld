@@ -1,0 +1,31 @@
+package com.edu.queue.adt;
+
+public class BoundedQueueLinkList<T> implements BoundedQueue<T> {
+
+	private Node<T> front,rear;
+	private int totalNodes;
+	private int size;
+	public BoundedQueueLinkList(int size){
+		
+	}
+	@Override
+	public void enQueue(T element) {
+		
+	}
+
+	@Override
+	public T deQueue() {
+		return null;
+	}
+
+	@Override
+	public Boolean isEmpty() {
+		return null;
+	}
+
+	@Override
+	public Boolean isFull() {
+		return null;
+	}
+
+}

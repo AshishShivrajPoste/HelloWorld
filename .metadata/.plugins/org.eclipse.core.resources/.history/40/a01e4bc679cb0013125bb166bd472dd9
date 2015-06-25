@@ -1,0 +1,20 @@
+package com.aricent.edu.threadpoolexecutor;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Executor {
+
+	private ExecutorService threadPool = null;
+	
+	public Executor() {
+		threadPool = Executors.newCachedThreadPool();
+	}
+	public static void main(String[] args) {
+		Thread t1 = new Thread(new Summing(234));
+		Thread t2 = new Thread(new Summing(347));
+		Thread t3 = new Thread(new Summing(874));
+		Thread t4 = new Thread(new Summing(2134));
+		Thread t5 = new Thread(new Summing(4345));
+	}
+}

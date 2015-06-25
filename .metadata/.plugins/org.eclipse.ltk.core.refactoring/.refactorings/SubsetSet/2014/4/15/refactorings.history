@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;SubsetSum.java&apos; to &apos;SubsetSum/src/com.aricent.edu.subsetsum&apos;&#x0D;&#x0A;- Original project: &apos;SubsetSet&apos;&#x0D;&#x0A;- Destination element: &apos;SubsetSum/src/com.aricent.edu.subsetsum&apos;&#x0D;&#x0A;- Original element: &apos;com.aricent.edu.subset.SubsetSum.java&apos;" description="Copy compilation unit" destination="=SubsetSum/src&lt;com.aricent.edu.subsetsum" element1="/src&lt;com.aricent.edu.subset{SubsetSum.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1397106056566" units="1" version="1.0"/>
+</session>

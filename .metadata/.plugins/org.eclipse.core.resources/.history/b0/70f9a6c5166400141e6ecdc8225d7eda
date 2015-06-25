@@ -1,0 +1,72 @@
+package com.edu.queue.adt;
+
+public class BoundedQueueLinkList<T> implements BoundedQueue<T> {
+
+	private Node<T> front,rear;
+	private int totalNodes;
+	private int size;
+	public BoundedQueueLinkList(int size){
+		
+	}
+	@Override
+	public void enQueue(T element) {
+		Node<T> current = rear;
+		rear = new Node<T>();
+		rear.setItemData(element);
+		if(isFull()){
+			System.out.println("Queue Full !!!");
+		}
+		else{
+			if(isEmpty()){
+				front = rear;
+			}else{
+				current.setNext(rear);
+			}
+			totalNodes++;
+		}
+	}
+
+	@Override
+	public T deQueue() {
+		if(isEmpty()){
+			System.out.println("Empty Queue!!!");
+			return null;
+		}
+		T element = (T) front.getItemData();
+		Node<T> next = front.getNext();
+		front = next;
+		totalNodes--;
+		if(isEmpty()){
+			rear = null;
+		}
+		return element;
+	}
+
+	@Override
+	public Boolean isEmpty() {
+		if(totalNodes == 0){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean isFull() {
+		if(totalNodes == size){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		Node<T> tmp = front;
+		while (tmp != null) {
+			sb.append(tmp.getItemData()).append("->");
+			tmp = tmp.getNext();
+		}
+		return sb.toString();
+	}
+}

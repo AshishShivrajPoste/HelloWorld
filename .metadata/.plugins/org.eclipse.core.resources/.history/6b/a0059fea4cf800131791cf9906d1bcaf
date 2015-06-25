@@ -1,0 +1,29 @@
+package com.ashish.edu.demo;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Employee {
+
+
+		private String name;
+		private int age;
+		private int sal;
+		public Employee(String name,int age,int sal){
+			this.name = name;
+			this.age = age;
+			this.sal = sal;
+		}
+		public List<Employee> eliminateduplicateEmployees(List<Employee> list){
+			Set<Employee> set = new HashSet<Employee>();
+			for(Employee emp : list){
+				set.add(emp);
+			}
+			return (List<Employee>)set;
+		}
+		
+		public static void main(String[] args) {
+			Employee e1 = new Employee()
+		}
+}

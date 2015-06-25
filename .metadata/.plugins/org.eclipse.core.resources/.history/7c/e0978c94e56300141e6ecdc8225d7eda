@@ -1,0 +1,20 @@
+package com.edu.queue.adt;
+
+public class UnboundedQueueLinklist<T> implements UnboundedQueue<T> {
+
+	@Override
+	public void enQueue(T element) {
+		
+	}
+
+	@Override
+	public T deQueue() {
+		return null;
+	}
+
+	@Override
+	public Boolean isEmpty() {
+		return null;
+	}
+
+}

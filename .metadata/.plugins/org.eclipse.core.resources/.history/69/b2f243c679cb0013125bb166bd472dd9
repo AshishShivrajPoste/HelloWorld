@@ -1,0 +1,33 @@
+package com.aricent.edu.bst;
+
+public class LinkedList {
+
+		private Node head;
+		public LinkedList(){
+			head = null;
+		}
+		
+		public void insert(int data){
+			Node parent = null;
+			Node x = head;
+			while(null != x){
+				parent = x;
+				if(data <= x.getData()){
+					x = x.getleft();
+				}else {
+					x = x.getright();
+				}
+			}
+			if(null == parent){
+					head = new Node(data);
+			}
+			else if (data <= parent.getData()) {
+				parent.setleft(new Node(data));
+			}else{
+				parent.setright(new Node(data));
+			}
+		}
+		public void delete(int data){
+			
+		}
+}

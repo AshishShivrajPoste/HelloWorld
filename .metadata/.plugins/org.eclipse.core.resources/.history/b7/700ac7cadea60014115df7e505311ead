@@ -1,0 +1,69 @@
+package com.ms.edu.linklist;
+
+public class Palindrome {
+	public Boolean isPalindrome(Node head){	
+		Node slowLinklistPtr = head;
+		Node fastLinklistPtr = head;
+		Node prev_of_slow_ptr = head;
+		Node startNode = head;
+		Node midNode = null;
+		middleLinklistNode(slowLinklistPtr,fastLinklistPtr,prev_of_slow_ptr);
+		if (fastLinklistPtr != null)
+        {
+			midNode = slowLinklistPtr;
+			slowLinklistPtr = slowLinklistPtr.getLink();
+        }
+		Node second_half = slowLinklistPtr;
+		prev_of_slow_ptr.setLink(null);
+		reverseLinklist(second_half);
+		return compareLists(head, second_half);
+//		while(startNode!=null || lastNode!=null){
+//			if(startNode.getData()!=lastNode.getData()){
+//				return false;
+//			}
+//			startNode = startNode.getLink();
+//			lastNode = lastNode.getLink();
+//		}
+//		return true;
+	}
+	private Boolean compareLists(Node head, Node second_half) {
+		 Node temp1 = head;
+		 Node temp2 = second_half;
+		 
+		    while (temp1!=null && temp2!=null)
+		    {
+		        if (temp1.getData() == temp2.getData())
+		        {
+		            temp1 = temp1.getLink();
+		            temp2 = temp2.getLink();
+		        }
+		        else{
+		        	return false;	
+		        }
+		    }
+		 
+		    if (temp1 == null && temp2 == null)
+		        return true;
+		 	return false;
+	}
+	public Node reverseLinklist(Node node){
+		Node prev = null;
+		Node current = node;
+		Node next = null;
+		while(current != null){
+			next = current.getLink();
+			current.setLink(prev);
+			prev = current;
+			current = next;
+		}
+		return prev;
+	}
+	public Node middleLinklistNode(Node slowLinklistPtr,Node fastLinklistPtr,Node prev_of_slow_ptr){
+		while(fastLinklistPtr!=null && fastLinklistPtr.getLink()!=null){
+			slowLinklistPtr = slowLinklistPtr.getLink();
+			prev_of_slow_ptr = slowLinklistPtr;
+			fastLinklistPtr = fastLinklistPtr.getLink().getLink();
+		}
+		return slowLinklistPtr;
+	}
+}

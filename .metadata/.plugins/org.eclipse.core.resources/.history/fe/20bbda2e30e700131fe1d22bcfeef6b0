@@ -1,0 +1,10 @@
+package com.aricent.edu.classes;
+
+public class TestEmployee {
+
+	public static void main(String[] args) {
+		Employee merlin = new Employee();
+		
+		
+	}
+}

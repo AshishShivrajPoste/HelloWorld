@@ -1,0 +1,193 @@
+package com.aricent.edu.bst;
+
+import java.util.List;
+import java.util.Stack;
+
+public class LinkedList {
+
+		private static Node head;
+		public LinkedList(){
+			head = null;
+		}
+		
+		public void insert(int data){
+			Node parent = null;
+			Node x = head;
+			while(null != x){
+				parent = x;
+				if(data <= x.getData()){
+					x = x.getleft();
+				}else {
+					x = x.getright();
+				}
+			}
+			Node temp = new Node(data);
+			temp.setParent(parent);
+			if(null == parent){
+				temp.setParent(null);
+				head = temp;
+			}
+			else if (data <= parent.getData()) {
+				parent.setleft(temp);
+			}else{
+				parent.setright(temp);
+			}
+		}
+		public void delete(int data){
+			
+		}
+		public Node search(Node head , int data){
+			if(null == head || head.getData() == data){
+				return head;
+			}
+			if(data < head.getData()){
+				return search(head.getleft(), data);
+			}else {
+				return search(head.getright(), data);
+			}
+			
+		}
+		public Node minimumNode(Node head){
+			Node tempNode = head;
+			while(null != tempNode.getleft()){
+				tempNode = tempNode.getleft();
+			}
+			return tempNode;
+		}
+		public Node maximumNode(Node head){
+			Node tempNode = head;
+			while(null != tempNode.getright()){
+				tempNode = tempNode.getright();
+			}
+			return tempNode;
+		}
+		public void inorderTreeWalk(Node node){
+			if(null != node){
+				inorderTreeWalk(node.getleft());
+				System.out.println(node.getData());
+				inorderTreeWalk(node.getright());
+			}
+		}
+		public void ksmallest(int k,Node node){
+			Node temp = node;
+			Stack<Node> stack = new Stack<Node>();
+			while(stack.size() > 0 || temp != null){
+				if(temp != null){
+					stack.push(temp);
+					temp  = temp.getleft();
+				}else{
+					temp = stack.pop();
+					k--;
+					if(0 == k){
+						System.out.println("Kth smallest element-->"+temp.getData());
+						return;
+					}
+					temp = temp.getright();
+				}
+			}
+		}
+		public int BSTHeight(Node node){
+			if(node == null){
+				return -1;
+			}
+			if(node.getleft() == null && node.getright() == null){
+				return 0;
+			}else {
+				int leftHeight = BSTHeight(node.getleft());
+				int rightHeight = BSTHeight(node.getright());
+				if(leftHeight >= rightHeight){
+					return leftHeight+1;
+				}else{
+					return rightHeight+1;
+				}
+			}
+		}
+		public Node BSTtoDLL(Node node){
+			if(null == node){
+				return node;
+			}
+			if(node.getleft() != null){
+				Node left = BSTtoDLL(node.getleft());
+				for(;left.getright()!=null;left=left.getright());
+				left.setright(node);
+				node.setleft(left);
+			}
+			if(node.getright() != null){
+				Node right = BSTtoDLL(node.getright());
+				for(;right.getleft()!=null;right = right.getleft());
+				right.setleft(node);
+				node.setright(right);
+			}
+			return node;
+		}
+		public int summing(Node node){
+			if(node.getleft() == null && node.getright()==null){
+				return node.getData();
+			}
+			
+			node.setData(node.getData()+summing(node.getright()));
+			
+			return 0;
+			
+		}
+		public void inorderTreeWalksumming(Node node){
+			
+			if(null != node){
+				inorderTreeWalk(node.getright());
+				System.out.println(node.getData());
+				inorderTreeWalk(node.getleft());
+			}
+		}
+		public static void main(String args[]){
+			LinkedList bst = new LinkedList();
+////			bst.insert(399);
+//			bst.insert(2);
+////			bst.insert(399);
+//			bst.insert(387);
+//			bst.insert(22);
+//			bst.insert(56);
+////			bst.insert(24);
+////			bst.insert(98);
+////			bst.insert(-5);
+////			bst.insert(-6);
+////			bst.insert(-23);
+////			bst.insert(-12);
+////			bst.insert(654);
+////			bst.insert(12);
+////			bst.insert(212);
+//			bst.insert(90);
+////			bst.insert(65);
+////			bst.insert(10);
+			bst.insert(10);
+			bst.insert(7);
+			bst.insert(12);
+			bst.insert(5);
+			bst.insert(9);
+			bst.insert(11);
+			bst.insert(15);
+			
+			bst.inorderTreeWalk(head);
+			Node resultNode = bst.search(head, 65);
+			if(null != resultNode){
+				System.out.println("Search Result-->"+resultNode.getData());
+			}else{
+				System.out.println("Search Result-->"+resultNode);
+			}
+			System.out.println("MIN Node-->"+bst.minimumNode(head).getData());
+			System.out.println("MAX Node-->"+bst.maximumNode(head).getData());
+			bst.ksmallest(9, head);
+			System.out.println(bst.BSTHeight(head));
+			
+//			Node root = bst.BSTtoDLL(head);
+//			while (root.getleft() != null){
+//				root = root.getleft();
+//			}
+//			System.out.println();
+//			while (root != null){
+//				System.out.print(" "+root.getData());
+//				root = root.getright();
+//			}
+			bst.inorderTreeWalksumming(head);
+			bst.summing(head);
+		}
+}

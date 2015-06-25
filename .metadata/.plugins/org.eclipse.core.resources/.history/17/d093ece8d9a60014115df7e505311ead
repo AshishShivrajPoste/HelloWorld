@@ -1,0 +1,38 @@
+package com.ms.edu.linklist;
+
+public class Palindrome {
+	public Boolean isPalindrome(Node head){	
+		Node startNode = head;
+		Node middleNode = middleLinklistNode(head);
+		Node lastNode = reverseLinklist(middleNode);
+		while(startNode!=null || lastNode!=null){
+			if(startNode.getData()!=lastNode.getData()){
+				return false;
+			}
+			startNode = startNode.getLink();
+			lastNode = lastNode.getLink();
+		}
+		return true;
+	}
+	public Node reverseLinklist(Node node){
+		Node prev = null;
+		Node current = node;
+		Node next = null;
+		while(current != null){
+			next = current.getLink();
+			current.setLink(prev);
+			prev = current;
+			current = next;
+		}
+		return prev;
+	}
+	public Node middleLinklistNode(Node node){
+		Node slowLinklistPtr = node;
+		Node fastLinklistPtr = node.getLink();
+		while(fastLinklistPtr.getLink()!=null ||fastLinklistPtr!=null){
+			slowLinklistPtr = slowLinklistPtr.getLink();
+			fastLinklistPtr = fastLinklistPtr.getLink().getLink();
+		}
+		return slowLinklistPtr;
+	}
+}

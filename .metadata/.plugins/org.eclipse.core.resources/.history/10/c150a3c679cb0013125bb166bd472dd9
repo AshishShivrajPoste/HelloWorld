@@ -1,0 +1,8 @@
+package com.aricent.edu.decorator;
+
+public class MakePizza {
+
+		public static void main(String[] args) {
+			Pizza pizza = new PlainPizza();
+		}
+}

@@ -1,0 +1,16 @@
+package com.aricent.edu.prem;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		String s1 = new String("Ashish");
+		String s2 = new String("Ashish");
+		
+		
+		Map<String, String> m1 = new HashMap<String, String>();
+	}
+}

@@ -1,0 +1,55 @@
+package com.arident.edu;
+
+public class LargestPalindrome {
+
+	private int globalNumber;
+	
+	public LargestPalindrome(int globalNumber){
+		this.globalNumber = globalNumber;
+	}
+	public int largestPalindrome(int m,int n,Boolean flag){
+		int product = m*n;
+		int product1 = 0; 
+		if(isPalindrome(product)){
+			return product;
+		}else if(m < 0 || n < 0){
+			return 0;
+		}
+		if(flag){
+			flag = false;
+			product1 = largestPalindrome(m-1, n,flag);
+		}else{
+			flag = true;
+			product1 = largestPalindrome(m, n-1,flag);
+		}
+		if(product <= product1){
+			return product1;
+		}else{
+			return product;
+		}
+	}
+	
+	private Boolean isPalindrome(int num){
+		if(oneDigit(num)){
+			return (num == (globalNumber%10));
+		}
+		if(!(isPalindrome(num/10))){
+			return false;
+		}
+		globalNumber /= 10;
+		return (num % 10 == globalNumber %10);
+	}
+	private Boolean oneDigit(int num){
+		if(num <=10 && num >= 0){
+			return true;
+		}
+		return false;
+	}
+	public static void main(String args[]){
+		int inputNumber  = 12321;
+		LargestPalindrome largestPalindrome = new LargestPalindrome(inputNumber);
+//		System.out.println(largestPalindrome.isPalindrome(inputNumber));
+		System.out.println(largestPalindrome.largestPalindrome(100, 100,true));
+		
+	}
+}

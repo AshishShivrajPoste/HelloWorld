@@ -1,0 +1,51 @@
+package com.edu.queue.adt;
+
+import java.util.Scanner;
+
+public class BoundedQueueApplication {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		UnboundedQueueLinklist<String> unBoundedQueue = new UnboundedQueueLinklist<String>();
+		Scanner scanner = new Scanner(System.in);
+		String  ans;
+		do{
+			System.out.println("Press 1 to Add element to Queue");
+			System.out.println("Press 2 to Delete element to Queue");
+			System.out.println("Press 3 to Display element to Queue");
+			System.out.println("Press 4 to Exit element to Queue");
+			System.out.println("Please Enter your choice");
+			int choice = scanner.nextInt();
+			switch(choice){
+			case 1:
+				System.out.println("Enter the Data to Add to Queue");
+				String data = scanner.next();
+				unBoundedQueue.enQueue(data);
+				break;
+			case 2: 
+				String element = unBoundedQueue.deQueue();
+				if(element != null){
+					System.out.println("Dequeued Element is "+element);	
+				}
+				break;
+			case 3: 
+				System.out.println("Queue contains Elements:");
+				System.out.println(unBoundedQueue.toString());
+				break;
+			case 4:
+				return;
+			default:
+				System.out.println("Wrong choice entered!!! Please retry");
+				break;
+			}
+			System.out.println("Do you want to continue(y/n)?");
+			ans = scanner.next();		
+		}while(ans.equalsIgnoreCase("y"));
+	}
+
+}
+
+

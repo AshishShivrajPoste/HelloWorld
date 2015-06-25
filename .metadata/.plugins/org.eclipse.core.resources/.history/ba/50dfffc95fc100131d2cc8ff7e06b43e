@@ -1,0 +1,5 @@
+package com.aricent.edu.decorator;
+
+public class ToppingDecorator {
+
+}

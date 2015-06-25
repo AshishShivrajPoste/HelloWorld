@@ -1,0 +1,59 @@
+package com.ms.edu.linklist;
+/**
+ * Palindrome class provide the API to check if given linklist is palindrome
+ * @author Ashish S Poste
+ *
+ */
+public class Palindrome {
+	public Boolean isPalindrome(Node head){	
+		Node slowLinklistPtr = head;
+		Node fastLinklistPtr = head;
+		Node prev_of_slow_ptr = head;
+		while(fastLinklistPtr!=null && fastLinklistPtr.getLink()!=null){
+			fastLinklistPtr = fastLinklistPtr.getLink().getLink();
+			prev_of_slow_ptr = slowLinklistPtr;
+			slowLinklistPtr = slowLinklistPtr.getLink();
+		}
+		if (fastLinklistPtr != null)
+        {
+			Node midNode = slowLinklistPtr;
+			slowLinklistPtr = slowLinklistPtr.getLink();
+        }
+		Node second_half = slowLinklistPtr;
+		prev_of_slow_ptr.setLink(null);
+		second_half = reverseLinklist(second_half);
+		return compareLists(head, second_half);
+	}
+	private Boolean compareLists(Node head, Node second_half) {
+		 Node temp1 = head;
+		 Node temp2 = second_half;
+		 
+		    while (temp1!=null && temp2!=null)
+		    {
+		        if (temp1.getData() == temp2.getData())
+		        {
+		            temp1 = temp1.getLink();
+		            temp2 = temp2.getLink();
+		        }
+		        else{
+		        	return false;	
+		        }
+		    }
+		 
+		    if (temp1 == null && temp2 == null)
+		        return true;
+		 	return false;
+	}
+	private Node reverseLinklist(Node node){
+		Node prev = null;
+		Node current = node;
+		Node next = null;
+		while(current != null){
+			next = current.getLink();
+			current.setLink(prev);
+			prev = current;
+			current = next;
+		}
+		return prev;
+	}
+}

@@ -1,0 +1,6 @@
+package com.ashish.edu.demo;
+
+public class Employee {
+
+	abstract void print();
+}

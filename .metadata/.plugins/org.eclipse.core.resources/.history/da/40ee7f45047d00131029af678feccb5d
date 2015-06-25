@@ -1,0 +1,90 @@
+package com.aricent.edu.bst;
+
+public class LinkedList {
+
+		private static Node head;
+		public LinkedList(){
+			head = null;
+		}
+		
+		public void insert(int data){
+			Node parent = null;
+			Node x = head;
+			while(null != x){
+				parent = x;
+				if(data <= x.getData()){
+					x = x.getleft();
+				}else {
+					x = x.getright();
+				}
+			}
+			Node temp = new Node(data);
+			temp.setParent(parent);
+			if(null == parent){
+				temp.setParent(null);
+			}
+			else if (data <= parent.getData()) {
+				parent.setleft(temp);
+			}else{
+				parent.setright(temp);
+			}
+		}
+		public void delete(int data){
+			
+		}
+		public Node search(Node head , int data){
+			if(null == head || head.getData() == data){
+				return head;
+			}
+			if(data < head.getData()){
+				return search(head.getleft(), data);
+			}else {
+				return search(head.getright(), data);
+			}
+			
+		}
+		public Node minimumNode(Node head){
+			Node tempNode = head;
+			while(null != tempNode.getleft()){
+				tempNode = tempNode.getleft();
+			}
+			return tempNode;
+		}
+		public Node maximumNode(Node head){
+			Node tempNode = head;
+			while(null != tempNode.getright()){
+				tempNode = tempNode.getright();
+			}
+			return tempNode;
+		}
+		public void inorderTreeWalk(Node node){
+			if(null != node){
+				inorderTreeWalk(node.getleft());
+				System.out.println(node.getData());
+				inorderTreeWalk(node.getright());
+			}
+		}
+		public static void main(String args[]){
+			LinkedList bst = new LinkedList();
+			bst.insert(2);
+			bst.insert(399);
+			bst.insert(387);
+			bst.insert(22);
+			bst.insert(654);
+			bst.insert(12);
+			bst.insert(212);
+			bst.insert(90);
+			bst.insert(12);
+			bst.insert(65);
+			bst.insert(10);
+			bst.inorderTreeWalk(head);
+			Node resultNode = bst.search(head, 65);
+			if(null != resultNode){
+				System.out.println("Search Result-->"+resultNode.getData());
+			}else{
+				System.out.println("Search Result-->"+resultNode);
+			}
+			System.out.println("MIN Node-->"+bst.minimumNode(head).getData());
+			System.out.println("MAX Node-->"+bst.maximumNode(head).getData());
+		}
+}

@@ -1,0 +1,37 @@
+package com.aricent.edu;
+
+public class SingleLinkedListOperations {
+
+	public SLL resverseEveryKSLL(SLL head,int k){
+		int count = 0;
+		SLL current = head;
+		SLL next = null;
+		SLL prev = null;
+		while(current!=null && count < k){
+			next = current.getNext();
+			current.setNext(prev);
+			prev = current;
+			current = next;
+			count++;	
+		}
+		if(next != null){
+			head.setNext(resverseEveryKSLL(next, k));
+		}
+		return prev;
+	}
+	public void printSLL(SLL head){
+		SLL temp = head;
+		while(temp != null){
+			System.out.print(" "+temp.getData());
+			temp = temp.getNext();
+		}
+	}
+	public static void main(String args[]){
+		SLL head = new SLL("10", new SLL("30", new SLL("12", new SLL("23", new SLL("33", new SLL("65", new SLL("11", new SLL("68", new SLL("5", new SLL("45",new SLL("54",new SLL("3", null))))))))))));
+		SingleLinkedListOperations singleLinkedListOperations = new SingleLinkedListOperations();
+		singleLinkedListOperations.printSLL(head);
+		SLL newhead = singleLinkedListOperations.resverseEveryKSLL(head, 2);
+		System.out.println();
+		singleLinkedListOperations.printSLL(newhead);
+	}
+}

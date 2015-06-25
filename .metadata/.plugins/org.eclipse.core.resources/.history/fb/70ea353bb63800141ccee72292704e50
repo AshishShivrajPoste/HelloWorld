@@ -1,0 +1,34 @@
+package com.aricent.edu.prem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListRemove {
+
+		public static void main(String[] args) {
+			List<String> lonewFilelist = new ArrayList<String>();
+			List<String> toremoveList = new ArrayList<String>();
+			String str = null;
+			lonewFilelist.add("A");
+			lonewFilelist.add("1B");
+			lonewFilelist.add("C");
+			lonewFilelist.add("D");
+			lonewFilelist.add("E");
+			lonewFilelist.add("1F");
+			lonewFilelist.add("1G");
+			lonewFilelist.add("1H");
+			int size = lonewFilelist.size();
+			for(int i =0;i<lonewFilelist.size();i++){
+				str= lonewFilelist.get(i);
+					if(lonewFilelist.get(i).startsWith("1")){
+						toremoveList.add(str);
+					}
+			}
+//			for(int i = 0; i < toremoveList.size();i++){
+//				lonewFilelist.remove(toremoveList.get(i));
+//			}
+			lonewFilelist.removeAll(toremoveList);
+			toremoveList.clear();
+			System.out.println();
+		}
+}

@@ -1,0 +1,17 @@
+package com.ms.edu.linklist;
+
+public class PalindromeCheckApp {
+	public static void main(String[] args) {
+		Linklist linklist = new Linklist();
+		Node node1 = new Node('a');
+		linklist.add(node1);
+		Node node2 = new Node('b');
+		linklist.add(node2);
+		Node node3 = new Node('b');
+		linklist.add(node3);
+		Node node4 = new Node('a');
+		linklist.add(node4);
+		Palindrome palindrome = new Palindrome();
+		System.out.println("Result :"+palindrome.isPalindrome(node1));
+	}
+}

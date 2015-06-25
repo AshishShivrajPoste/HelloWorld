@@ -1,0 +1,59 @@
+package com.edu.queue.adt;
+
+import java.util.Scanner;
+
+public class BoundedQueueApplication {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		UnboundedQueueLinklist<String> unBoundedQueue = new UnboundedQueueLinklist<String>();
+
+		unBoundedQueue.enQueue("Ashish");
+		unBoundedQueue.enQueue("Kalmesh");
+		unBoundedQueue.enQueue("Manujnath");
+		unBoundedQueue.enQueue("Veera");
+		
+		System.out.println("Queue Contains : \n"+unBoundedQueue.toString());
+		
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is "+unBoundedQueue.deQueue());
+		
+		Scanner scanner = new Scanner(System.in);
+		String  ans;
+		do{
+			System.out.println("Press 1 to Add element to Queue");
+			System.out.println("Press 2 to Delete element to Queue");
+			System.out.println("Press 3 to Display element to Queue");
+			System.out.println("Press 4 to Exit element to Queue");
+			System.out.println("Please Enter your choice");
+			int choice = scanner.nextInt();
+			switch(choice){
+			case 1:
+				break;
+			case 2: 
+				break;
+			case 3: 
+				break;
+			case 4:
+				break;
+			default:
+				System.out.println("Wrong choice entered!!! Please retry");
+				break;
+			}
+			System.out.println("Do you want to continue(y/n)?");
+			ans = scanner.next();
+			
+		}while(ans.compareToIgnoreCase("y"))
+	}
+
+}
+
+

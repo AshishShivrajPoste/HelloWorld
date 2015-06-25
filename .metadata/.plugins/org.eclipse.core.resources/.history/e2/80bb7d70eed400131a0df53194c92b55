@@ -1,0 +1,23 @@
+package com.aricent.edu.star;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DriverClass {
+
+	List<Person> listofPersons = new ArrayList<Person>();
+	public Person findingSuperStar(Person p1,Person p2){
+		
+		if(p1.knows(p2) && p2.knows(p1)){
+			return findingSuperStar(p1, p2);
+		}else if(p1.knows(p2) && !p2.knows(p1)){
+			return findingSuperStar(p1, p2);
+		}else if(p2.knows(p1) && !p1.knows(p2)){
+			return findingSuperStar(p1, p2);
+		}
+		return null;
+	}
+	public static void main(String[] args) {
+		
+	}
+}

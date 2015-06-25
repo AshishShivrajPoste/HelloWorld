@@ -1,0 +1,12 @@
+package com.aricent.edu.star;
+
+public class DriverClass {
+
+	public Person findingSuperStar(Person p1,Person p2){
+		
+		
+	}
+	public static void main(String[] args) {
+		
+	}
+}

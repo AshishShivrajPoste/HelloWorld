@@ -1,0 +1,23 @@
+package com.aricent.edu.path;
+
+public class PathPrediction {
+
+	public int pathFinding(int[][] input,int m,int n,int noofpaths){
+		if(m < 0 || n < 0){
+			return -1;
+		}
+		if(m == 0  || n == 0 ){
+			return noofpaths; 
+		}
+		pathFinding(input, m-1, n-1,noofpaths); 
+		pathFinding(input, m-1, n,noofpaths );
+		pathFinding(input, m, n-1,noofpaths); 
+		return noofpaths;
+	}
+	public static void main(String[] args) {
+		int noofpaths = 0;
+		int[][] input = new int[2][2];
+		PathPrediction pathPrediction = new PathPrediction();
+		System.out.println(pathPrediction.pathFinding(input, 2, 2, noofpaths));
+	}
+}

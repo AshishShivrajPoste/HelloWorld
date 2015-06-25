@@ -1,0 +1,26 @@
+package com.edu.queue.adt;
+
+public class BoundedQueueApplication {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		UnboundedQueueLinklist<String> unBoundedQueue = new UnboundedQueueLinklist<String>();
+
+		unBoundedQueue.enQueue("Ashish");
+		unBoundedQueue.enQueue("Kalmesh");
+		unBoundedQueue.enQueue("Manujnath");
+		unBoundedQueue.enQueue("Veera");
+		
+		System.out.println("Queue Contains : \n"+unBoundedQueue.toString());
+		
+		System.out.println("Dequeued Element is"+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is"+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is"+unBoundedQueue.deQueue());
+		System.out.println("Dequeued Element is"+unBoundedQueue.deQueue());
+	}
+
+}
+

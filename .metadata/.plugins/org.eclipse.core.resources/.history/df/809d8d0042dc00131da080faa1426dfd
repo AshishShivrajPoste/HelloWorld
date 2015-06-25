@@ -1,0 +1,10 @@
+package com.aricent.edu.code.gladiator;
+
+public class CandidateCode1 {
+
+	 public static String criticalBridges(int input1,String input2)
+	    {
+	    
+		 return null;
+	    }
+}

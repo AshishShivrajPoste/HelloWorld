@@ -1,0 +1,46 @@
+package com.edu.queue.adt;
+
+public class UnboundedQueueLinklist<T> implements UnboundedQueue<T> {
+
+	private Node front,rear;
+	private int totalNodes;
+
+	public UnboundedQueueLinklist(){
+		front = null;
+		rear = null;
+		totalNodes = 0;
+	}
+	@Override
+	public void enQueue(T element) {
+		Node current = rear;
+		Node rear = new Node();
+		rear.setItemData(element);
+		if(totalNodes == 0){
+			front = rear;
+		}else{
+			current.setNext(rear);
+		}
+	}
+
+	@Override
+	public T deQueue() {
+		if(totalNodes == 0){
+			System.out.println("Empty Queue!!!");
+			return null;
+		}
+		T element = (T) front.getItemData();
+		front = front.getNext();
+		totalNodes--;
+		if(totalNodes == 0){
+			rear = null;
+		}
+		return element;
+		
+	}
+
+	@Override
+	public Boolean isEmpty() {
+		return null;
+	}
+
+}

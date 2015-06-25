@@ -1,0 +1,17 @@
+package com.aricent.edu.path;
+
+public class PathPrediction {
+
+	public int pathFinding(int[][] input,int m,int n){
+		if(m < 0  || n < 0 ){
+			return 1; 
+		}
+		int noofpaths = pathFinding(input, m-1, n-1) + pathFinding(input, m-1, n) + pathFinding(input, m, n-1); 
+		return noofpaths;
+	}
+	public static void main(String[] args) {
+		int[][] input = new int[2][2];
+		PathPrediction pathPrediction = new PathPrediction();
+		System.out.println(pathPrediction.pathFinding(input, 2, 2));
+	}
+}

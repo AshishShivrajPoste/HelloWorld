@@ -1,0 +1,129 @@
+package com.aricent.edu;
+
+public class SingleLinkedListOperations {
+
+	public SLL resverseEveryKSLL(SLL head,int k){
+		int count = 0;
+		SLL current = head;
+		SLL next = null;
+		SLL prev = null;
+		while(current!=null && count < k){
+			next = current.getNext();
+			current.setNext(prev);
+			prev = current;
+			current = next;
+			count++;	
+		}
+		if(next != null){
+			head.setNext(resverseEveryKSLL(next, k));
+		}
+		return prev;
+	}
+	public SLL resverseSLL1Pointer(SLL head){
+		if(head.getNext() == null){
+			return head;
+		}
+		SLL result = resverseSLL1Pointer(head.getNext());
+		head.getNext().setNext(head);
+		head.setNext(null);
+		return result;
+	}
+	public SLL loopDetection(SLL head){
+		SLL prev = head;
+		SLL next = head.getNext();
+		while(next != null){
+			if(prev == next){
+				return getStartLoop(head, prev);
+//				return true;
+			}
+			prev = prev.getNext();
+			next = next.getNext().getNext();
+		}
+		
+		return  null;
+	}
+	public SLL getStartLoop(SLL head,SLL loopNode){
+		SLL ptr1 = head;
+		SLL ptr2 = null;
+		while(true){
+			ptr2 = loopNode;
+			while(ptr2.getNext() != ptr1 && ptr2.getNext() != loopNode){
+				ptr2 = ptr2.getNext();
+			}
+			if(ptr2.getNext() == ptr1){
+				break;
+			}
+			else{
+				ptr1 = ptr1.getNext();
+			}
+		}
+		return ptr2.getNext();
+	}
+	public void printSLL(SLL head){
+		SLL temp = head;
+		while(temp != null){
+			System.out.print(" "+temp.getData());
+			temp = temp.getNext();
+		}
+	}
+	public SLL printLinkListReverse(SLL node){
+		SLL prev = null;
+		while(node.getNext()!= null){
+			prev = node;
+			node = node.getNext();
+		}
+		if(node.getNext() == null){
+			SLL next  = node;
+			prev.setNext(null);
+			return next;
+		}
+		return null;
+	}
+	
+	public SLL foldLinkList(SLL node){
+		if(node.getNext()!=null){
+			SLL temp = node.getNext();
+			SLL next = printLinkListReverse(node);
+			node.setNext(next);
+			next.setNext(foldLinkList(temp));
+			next.setNext(null);
+		}
+		return node;
+	}
+	public static void main(String args[]){
+//		SLL head = new SLL("10", new SLL("30", new SLL("12", new SLL("23", new SLL("33", new SLL("65", new SLL("11", new SLL("68", new SLL("5", new SLL("45",new SLL("54",new SLL("3", null))))))))))));
+		SLL head = new SLL("12");
+		SLL node1 = new SLL("20");
+		head.setNext(node1);
+		SLL node2 = new SLL("10");
+		node1.setNext(node2);
+		SLL node3 = new SLL("34");
+		node2.setNext(node3);
+		SLL node4 = new SLL("36");
+		node3.setNext(node4);
+		SLL node5 = new SLL("67");
+		node4.setNext(node5);
+		
+
+		SLL node6 = new SLL("87");
+		node5.setNext(node6);
+		
+		SLL node7 = new SLL("98");
+		node6.setNext(node7);
+		node7.setNext(null);
+		
+	
+		
+		
+		SingleLinkedListOperations singleLinkedListOperations = new SingleLinkedListOperations();
+		singleLinkedListOperations.foldLinkList(head);
+		singleLinkedListOperations.printSLL(head);
+		SLL result = singleLinkedListOperations.resverseSLL1Pointer(head);
+		singleLinkedListOperations.printSLL(result);
+		System.out.println(singleLinkedListOperations.loopDetection(head).getData());
+		singleLinkedListOperations.printSLL(head);
+		SLL newhead = singleLinkedListOperations.resverseEveryKSLL(head, 4);
+		System.out.println();
+		singleLinkedListOperations.printSLL(newhead);
+	}
+}

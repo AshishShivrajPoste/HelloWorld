@@ -1,0 +1,49 @@
+package com.aricent.edu.paranthesis;
+
+public class Paranthesis_Version2 {
+
+	public void printParenthesis(int n)
+	{
+		char[] character = new  char[2*n]; 
+		if(n > 0)
+			character[0]  = '(';
+		_printParenthesis(1, n, 1, 0,character);
+		return;
+	}    
+	private void _printParenthesis(int pos, int n, int open, int close, char[] character)
+	{   
+
+		if(close == n && open == n)
+		{
+			System.out.println(character);
+			return;
+		}
+		else
+		{
+			if(open >= close && pos < n){
+
+				char[] newArrayLeft = character.clone();
+				char[] newArrayRight = character.clone();
+				
+				
+				newArrayLeft[pos] = ')';
+				_printParenthesis(pos+1, n, open, close+1,newArrayLeft);
+
+				newArrayRight[pos] = '(';
+				_printParenthesis(pos+1, n, open+1, close,newArrayRight);
+
+			}
+		}
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Paranthesis_Version2 paranthesis = new Paranthesis_Version2();
+		System.out.println("All Possible Well formed paranthesis");
+		paranthesis.printParenthesis(3);
+
+
+	}
+
+}

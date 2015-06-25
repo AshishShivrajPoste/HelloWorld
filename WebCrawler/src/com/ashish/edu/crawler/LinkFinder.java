@@ -1,0 +1,60 @@
+package com.ashish.edu.crawler;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.htmlparser.Parser;
+import org.htmlparser.filters.NodeClassFilter;
+import org.htmlparser.tags.LinkTag;
+
+/***
+ * 
+ * @author Ashish S Poste
+ *
+ */
+public class LinkFinder implements Runnable{
+
+	private String url;
+	private LinkHandler handler = null;
+	private static final long t0 = System.nanoTime();
+	
+	public LinkFinder(String url , LinkHandler handler){
+		this.url = url;
+		this.handler = handler;
+	}
+	@Override
+	public void run() {
+		URL uriLink = null;
+		if(!handler.isVisited(url)){
+			try {
+				uriLink = new URL(url);
+			} catch (MalformedURLException e) {
+				System.out.println(e.getMessage());
+			} 
+			Parser parser = new Parser(uriLink.openConnection());
+			NodeList list = parser.extractAllNodesThatMatch(new NodeClassFilter(LinkTag.class));
+			List<String> urls = new ArrayList<String>();
+			
+			for (int i = 0; i < list.size(); i++) {
+                LinkTag extracted = (LinkTag)list.elementAt(i);
+                if (!extracted.getLink().isEmpty() && !handler.isVisited(extracted.getLink())) {
+                    urls.add(extracted.getLink());
+                }
+            }
+			handler.markVisited(url);
+
+            if (handler.size() == 1500) {
+                System.out.println("Time to visit 1500 distinct links = " + (System.nanoTime() - t0));                   
+            }
+
+            for (String l : urls) {
+            	handler.queueLink(l);
+            }
+
+		}
+		
+	}
+
+}

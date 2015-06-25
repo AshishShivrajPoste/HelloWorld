@@ -1,0 +1,58 @@
+package com.aricent.edu.bulbchain;
+
+	
+	public class TranformBulbChain {
+		private String chainofBulbs1 = null;
+		private String chainofBulbs2 = null;
+	
+	public TranformBulbChain(String chainofBulbs1,String chainofBulbs2){
+		this.chainofBulbs1 = chainofBulbs1;
+		this.chainofBulbs2 = chainofBulbs2;
+	}
+	public int transform(int i,int j){
+		if(i == -1 && j == -1){
+			return 0;
+		}
+		if(i == -1){
+			return j;
+		}
+		if(j == -1){
+			return i;
+		}
+		if(chainofBulbs1.charAt(i) == chainofBulbs2.charAt(j)){
+			return transform(i-1, j-1);
+		}
+		else{
+			int count1 = transform(i, j-1)+1;
+			int count2 = transform(i-1, j)+1;
+			
+			if(count1<=count2){
+				return count1;	
+			}
+			else{
+				return count2;
+			}
+		}
+		
+//		int left = transform(i, j-1)+1;
+//	    int right = transform(i-1, j)+1;
+//	    int corner = transform(i-1, j-1) + ((int)chainofBulbs1.charAt(i-1) != chainofBulbs2.charAt(j-1));
+//	 
+//	    return Minimum(left, right, corner);
+	}
+	private int min(int a, int b) {
+		   return a < b ? a : b;
+		}
+		 
+		// Returns Minimum among a, b, c
+	public int Minimum(int a, int b, int c)
+		{
+		    return min(min(a, b), c);
+		}
+	public static void main(String args[]){
+		String s1 =new  String("x");
+		String s2 =new  String("abcde");
+		TranformBulbChain bulbChain = new TranformBulbChain(s1, s2);
+		System.out.println(bulbChain.transform(s1.length()-1, s2.length()-1));
+	}
+}

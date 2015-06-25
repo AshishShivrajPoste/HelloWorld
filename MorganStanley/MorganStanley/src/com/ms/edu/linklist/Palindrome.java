@@ -1,0 +1,78 @@
+package com.ms.edu.linklist;
+/**
+ * Palindrome class provide the API to check if given linklist is palindrome
+ * @author Ashish S Poste
+ *
+ */
+public class Palindrome {
+	/**
+	 * isPalindrome check if given linklist is palindrome
+	 * @param head : Pointer to the head node of linklist
+	 * @return : true : if linklist is palindrome
+	 * 			fale: if linklist is not plaindrome
+	 */
+	public Boolean isPalindrome(Node head){	
+		Node slowLinklistPtr = head;
+		Node fastLinklistPtr = head;
+		Node prev_of_slow_ptr = head;
+		/*Calculate the middle node of link list,fastLinklistPtr will point to null if linklist contain even number of nodes
+		 * else to last node if linklist contains odd number of nodes*/
+		while(fastLinklistPtr!=null && fastLinklistPtr.getLink()!=null){
+			fastLinklistPtr = fastLinklistPtr.getLink().getLink();
+			prev_of_slow_ptr = slowLinklistPtr;
+			slowLinklistPtr = slowLinklistPtr.getLink();
+		}
+		if (fastLinklistPtr != null)
+        {
+			Node midNode = slowLinklistPtr;
+			slowLinklistPtr = slowLinklistPtr.getLink();
+        }
+		Node second_half = slowLinklistPtr;
+		prev_of_slow_ptr.setLink(null);
+		second_half = reverseLinklist(second_half);
+		return compareLists(head, second_half);
+	}
+	/**
+	 * Compare the list for palindrome
+	 * @param head : head of first list
+	 * @param second_half : head of second link list
+	 * @return
+	 */
+	private Boolean compareLists(Node head, Node second_half) {
+		 Node temp1 = head;
+		 Node temp2 = second_half;
+		 
+		    while (temp1!=null && temp2!=null)
+		    {
+		        if (temp1.getData() == temp2.getData())
+		        {
+		            temp1 = temp1.getLink();
+		            temp2 = temp2.getLink();
+		        }
+		        else{
+		        	return false;	
+		        }
+		    }
+		 
+		    if (temp1 == null && temp2 == null)
+		        return true;
+		 	return false;
+	}
+	/***
+	 * Reverse a linklist
+	 * @param node
+	 * @return
+	 */
+	private Node reverseLinklist(Node node){
+		Node prev = null;
+		Node current = node;
+		Node next = null;
+		while(current != null){
+			next = current.getLink();
+			current.setLink(prev);
+			prev = current;
+			current = next;
+		}
+		return prev;
+	}
+}
