@@ -15,7 +15,7 @@ public class JVMShutdownHookTest {
 	@Override
 	protected void finalize() throws Throwable {
 //		super.finalize();
-		System.out.println("JVM finalize Called");
+		System.out.println("JVM finalize Called changed");
 		super.finalize();
 	}
 }
