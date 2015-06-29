@@ -54,7 +54,7 @@ public class DLL {
 		
 		Package package1 = myObjectClass.getPackage();
 		
-		System.out.println("Ashish Package Name-->"+package1.getName());
+		System.out.println("Ashish Poste Package Name-->"+package1.getName());
 		
 		
 	}
