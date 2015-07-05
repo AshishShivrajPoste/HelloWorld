@@ -107,7 +107,7 @@ public class LinkedListOperations {
 //		System.out.println("Reversed link list-->");
 //		linkedListOperations.printLinklist(reverseNode);
 		SLL result = linkedListOperations.reverselinklist1pointer1(head);
-		System.out.println("Original link list-->");
+		System.out.println("Original link list Changed-->");
 		linkedListOperations.printLinklist(result);
 		SLL reverseKNode = linkedListOperations.reverseKlinklist(head, 2);
 		System.out.println("Reversed k link list-->");
