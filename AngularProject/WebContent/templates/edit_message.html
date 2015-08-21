@@ -1,0 +1,33 @@
+<div>
+  <form name="userForm">
+  <div>
+  <label>Name:
+  <div>
+      <input type="text" value="{{x.author}}" name="authorName"
+             ng-model="message.author" />
+             </div>
+    </label>
+  </div>
+  <div>
+  <label>Message:
+  <div>
+      <input type="text" value="{{x.message}}" name="mseg"
+             ng-model="message.msg"/>
+             </div>
+    </label>
+  </div>
+  <div>
+  <label>Identifier:
+  <div>
+      <input type="text" value="{{x.identifier}}" name="identifier"
+             ng-model="message.identifier"/>
+             </div>
+    </label>
+  </div>
+    <div>
+    <a href="#ShowOrders" data-ng-click="editPerson(message)" class="btn btn-info" role="button">Update</a>
+    </div>
+    
+    
+    
+</div>

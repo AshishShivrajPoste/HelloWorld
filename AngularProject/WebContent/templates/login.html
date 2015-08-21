@@ -1,0 +1,15 @@
+<div>
+		<div class="jumbotron" style="padding-bottom: 0px;">
+			<h2>My First Angular Application</h2>
+		</div >
+		
+		<form class="form-signin" role="form">
+			<input type="email" class="form-control" ng-model = "user.name" placeholder="Email address" required="" autofocus="">
+			<input type="password" class="form-control" ng-model = "user.password"  placeholder="Password" required="">
+			<label class="checkbox"><a href="#home"> Sign Up</></label>
+			<button class="btn btn-lg btn-primary btn-block" ng-click = "loginUser()" type="submit">Sign in</button>
+			 <a href="/users/auth/facebook/" class="fblgn">
+    <span><i class="fa fa-facebook-official"></i>Sign up using Facebook</span>
+  </a>
+		</form>
+</div>

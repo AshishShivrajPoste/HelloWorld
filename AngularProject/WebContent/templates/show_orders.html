@@ -1,0 +1,32 @@
+
+<aside>
+	<h2>Messages</h2>
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Author</th>
+					<th>Created Date</th>
+					<th>Message</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="x in orders">
+					<td>{{x.identifier}}</td>
+					<td>{{x.author}}</td>
+					<td>{{x.created}}</td>
+					<td>{{x.msg}}</td>
+					<td><a href="#EditMessage" ng-controller="EditController" class="btn btn-info" ng-model="x" role="button" >Edit</a>
+					</td>
+					<td><a href="#ShowOrders" ng-controller="EditController" data-ng-click="deleteMessage(x.identifier)" class="btn btn-info" role="button">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<a href="#AddMessageOrder" data-ng-click="add()" class="btn btn-info" role="button" >Add Message</a>
+	</div>
+
+</aside>
