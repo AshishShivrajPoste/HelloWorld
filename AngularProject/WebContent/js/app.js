@@ -2,7 +2,7 @@
  * 
  */
 
-var sampleApp = angular.module("sampleApp",['F1FeederApp.services']);
+var sampleApp = angular.module("sampleApp",['F1FeederApp.services','firebase']);
 
 sampleApp.config(['$routeProvider',
                   function($routeProvider) {
@@ -12,7 +12,7 @@ sampleApp.config(['$routeProvider',
 		controller: 'HomeController'
 	}).
 	when('/login', {
-		templateUrl: 'templates/login.html',
+		templateUrl: 'templates/firebaseLogin.html',
 		controller: 'LoginController'
 	}).
 	when('/ShowOrders', {
@@ -31,7 +31,7 @@ sampleApp.controller('HomeController', function($scope) {
 	$scope.message = 'This is Add new order screen';
 
 });
-sampleApp.controller('LoginController', function($scope) {
+/*sampleApp.controller('LoginController', function($scope) {
 	
 	$scope.loginUser=function()
     {
@@ -49,7 +49,69 @@ sampleApp.controller('LoginController', function($scope) {
         }
     }
 
-});
+});*/
+//sampleApp.controller('LoginController', function($scope) {
+//	
+//	$scope.toggleSignIn = function() {
+//	    	if (!firebase.auth().currentUser) {
+//	        var provider = new firebase.auth.GoogleAuthProvider();
+//	  
+//	        provider.addScope('https://www.googleapis.com/auth/plus.login');
+//	      
+//	        firebase.auth().signInWithPopup(provider).then(function(result) {
+//	          var token = result.credential.accessToken;
+//	          var user = result.user;
+//	          $location.path( "/home" );
+//	        })
+//	    	} else {
+//	    		firebase.auth().signOut();
+//	    	}
+//	      // [START_EXCLUDE]
+//	     // document.getElementById('quickstart-sign-in').disabled = true;
+//	      // [END_EXCLUDE]
+//	    }
+//	    // [END buttoncallback]
+//	    /**
+//	     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+//	     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+//	     *    out, and that is where we update the UI.
+//	     */
+//	   $scope.initApp=function() {
+//	      // Listening for auth state changes.
+//	      // [START authstatelistener]
+//	      firebase.auth().onAuthStateChanged(function(user) {
+//	        if (user) {
+//	          // User is signed in.
+//	          var displayName = user.displayName;
+//	          var email = user.email;
+//	          var emailVerified = user.emailVerified;
+//	          var photoURL = user.photoURL;
+//	          var isAnonymous = user.isAnonymous;
+//	          var uid = user.uid;
+//	          var providerData = user.providerData;
+//	          // [START_EXCLUDE]
+//	          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+//	          document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+//	          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+//	          // [END_EXCLUDE]
+//	        } else {
+//	          // User is signed out.
+//	          // [START_EXCLUDE]
+//	          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+//	          document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
+//	          document.getElementById('quickstart-account-details').textContent = 'null';
+//	          document.getElementById('quickstart-oauthtoken').textContent = 'null';
+//	          // [END_EXCLUDE]
+//	        }
+//	        // [START_EXCLUDE]
+//	        document.getElementById('quickstart-sign-in').disabled = false;
+//	        // [END_EXCLUDE]
+//	      });
+//	      // [END authstatelistener]
+//	     // document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
+//	    }
+//
+//});
 
 sampleApp.controller('ShowOrdersController', function($scope,ergastAPIservice) {
 	
