@@ -1,0 +1,14 @@
+<div class="container" >
+	
+	<div style="align-item:center" >
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign Up</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="user.registrationEmail" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="user.registrationPassword" required>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Re-enter Password" ng-model="user.loginPassword" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="register()">Sign Up</button>
+      </form>
+    </div>
+</div>
