@@ -77,23 +77,8 @@ sampleApp.controller('BaseController', ['$location','userinfo',function($locatio
 
 }]);
 
-//sampleApp.controller('LandingController', ['$location','userinfo',function($location,userinfo) {
-//	var self  = this;
-//	
-//	self.message = 'This is Add new order screen';
-//	self.userInfo = userinfo.getUserInfo();
-//	self.logout = function (){
-//		firebase.auth().signOut().then(function() {
-//			console.log("Logout Sucessful");
-//			$location.path( "/#" );
-//		}, function(error) {
-//			console.log("Logout Error");
-//		});
-//	};
-//
-//}]);
 
-sampleApp.controller('SignUpController',function($scope){
+sampleApp.controller('SignUpController',['$scope',function($scope){
 	$scope.register = function (){
 		firebase.auth().createUserWithEmailAndPassword($scope.user.registrationEmail, $scope.user.registrationPassword).then(function (user){
 			console.log("User Signed in successfully and Logged In")
@@ -101,9 +86,9 @@ sampleApp.controller('SignUpController',function($scope){
 			authCtrl.error = error;
 		});	
 	};
-});
+}]);
 sampleApp.controller('LoginController', ['$scope','$location', 'userinfo', function($scope,$location,userinfo){
-	//var authCtrl = this;
+
 	var self = this;
 	self.login = function (){
 		console.log("Current User before :" + firebase.auth().currentUser)
@@ -117,7 +102,7 @@ sampleApp.controller('LoginController', ['$scope','$location', 'userinfo', funct
 			
 			userInfo.email= auth.email; 
 			userinfo.setUserInfo(userInfo);
-			$location.path( "/home" );
+			$scope.$apply(function() { $location.path("/home"); });
 		}, function (error){
 			self.error = error;
 			console.log(error);
@@ -127,7 +112,7 @@ sampleApp.controller('LoginController', ['$scope','$location', 'userinfo', funct
 	self.logout = function (){
 		firebase.auth().signOut().then(function() {
 			console.log("Logout Sucessful");
-			$location.path( "/#" );
+			$scope.$apply(function() { $location.path("/#"); });
 		}, function(error) {
 			console.log("Logout Error");
 		});
@@ -185,7 +170,7 @@ sampleApp.controller('LoginController', ['$scope','$location', 'userinfo', funct
 	};
 }]);
 
-sampleApp.controller('ShowOrdersController', function($scope,ergastAPIservice) {
+sampleApp.controller('ShowOrdersController', ['$scope' , 'ergastAPIservice' , function($scope,ergastAPIservice) {
 
 	$scope.msg = 'This is Show orders screen';
 	$scope.orders = [];	
@@ -195,9 +180,9 @@ sampleApp.controller('ShowOrdersController', function($scope,ergastAPIservice) {
 	}).error(function (response) {
 		console.log(response);
 	});
-});
+}]);
 
-sampleApp.controller('EditController', function($scope,ergastAPIservice) {
+sampleApp.controller('EditController', ['$scope','ergastAPIservice',function($scope,ergastAPIservice) {
 
 	$scope.deleteMessage = function(messageID) {
 		//$scope.orders.push({ 'author':$scope.message.author, 'message': $scope.message.mseg });
@@ -225,10 +210,10 @@ sampleApp.controller('EditController', function($scope,ergastAPIservice) {
 			console.log(response);
 		});	
 	}
-});
+}]);
 
 
-sampleApp.controller('addMessageController', function($scope,ergastAPIservice) {
+sampleApp.controller('addMessageController', ['$scope','ergastAPIservice',function($scope,ergastAPIservice) {
 
 	$scope.add = function(message) {
 		//$scope.orders.push({ 'author':$scope.message.author, 'message': $scope.message.mseg });
@@ -280,7 +265,7 @@ sampleApp.controller('addMessageController', function($scope,ergastAPIservice) {
 		$scope.message.author='';
 		$scope.message.mseg='';   
 	}
-});
+}]);
 
 sampleApp.run(['$rootScope', '$location',
                function ($rootScope, $location) {
@@ -299,10 +284,12 @@ sampleApp.run(['$rootScope', '$location',
 					if (next.templateUrl == "templates/login.html") {
 						// already going to the login route, no redirect needed
 						$rootScope.userloggedIn=false;
+						$rootScope.$apply();
 					} else {
 						// not going to the login route, we should redirect now
 						$location.path("/login");
 						$rootScope.userloggedIn=false;
+						$rootScope.$apply();
 					}
 				}
 			});
